@@ -1,9 +1,7 @@
 #include "u_systick.h"
-#define CLKSOURCE (1<<2)
-#define TCKINT 		(1<<1)
-#define ENABLE 		(1<<0)
-volatile uint32_t Delay_dec = 0;	
-
+#define CLKSOURCE (1<<2)                          //Указывает источник синхросигнала: 0 - LSI, 1 - HCLK.
+#define TCKINT    (1<<1)                          //Разрешает запрос на прерывание от системного таймера.
+#define ENABLE    (1<<0)                          //Разрешает работу таймера.
 void Init_SysTick (void)                          //Прерывание раз в милли секунду. 
 {
 	SysTick->LOAD |= (8000000/1000)-1;              
