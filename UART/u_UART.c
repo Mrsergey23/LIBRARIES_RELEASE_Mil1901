@@ -1,13 +1,9 @@
-#include "MDR32F9Qx_port.h"
-#include "MDR32F9Qx_uart.h"
-#include "MDR32F9Qx_rst_clk.h"
-#include "MDR1901VC1T.h"
-#include "UART.h"
+#include "u_UART.h"
 
 #define 	UART								MDR_UART3
 
 // Инициализация UART
-void U_UART_Init(void)
+void u_UART_Init(void)
 {
 	// Структура для инициализации линий ввода-вывода
   PORT_InitTypeDef PortInitStructure; 
@@ -55,10 +51,10 @@ void U_UART_Init(void)
   UART_Init(UART, &UARTInitStructure);
 
   // Разрешить прерывание по приему символа
-  UART_ITConfig (UART, UART_IT_RX, ENABLE);
+  //UART_ITConfig (UART, UART_IT_RX, ENABLE);
   
   // Задать приоритет выше, чем у планировщика задач RTX
-  NVIC_SetPriority (UART3_IRQn, 0x01); 	  
+ // NVIC_SetPriority (UART3_IRQn, 0x01); 	  
 
   // Разрешить прерывания от UART2
   NVIC_EnableIRQ (UART3_IRQn); 
